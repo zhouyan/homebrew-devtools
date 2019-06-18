@@ -43,11 +43,8 @@ class RMkl < Formula
 
     # Intel specfic
 
-    mklroot = ENV["MKL_ROOT"] || "/opt/intel/mkl"
-
-    ["LDFLAGS", "DYLD_LIBRARY_PATH"].each do |f|
-      ENV.append f, "#{mklroot}/lib"
-    end
+    ENV.append "LDFLAGS", "-L/opt/intel/mkl/lib"
+    ENV.append "DYLD_LIBRARY_PATH", "/opt/intel/mkl/lib"
 
     ["FC", "F77"].each do |f|
       ENV[f] = "/opt/intel/bin/ifort"
