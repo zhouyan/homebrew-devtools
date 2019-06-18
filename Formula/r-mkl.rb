@@ -45,15 +45,16 @@ class RMkl < Formula
 
     mklroot = ENV["MKL_ROOT"] || "/opt/intel/mkl"
 
-    ENV.append "DYLD_LIBRARY_PATH", "#{mklroot}/lib"
-    ENV.append "LDFLAGS", "-L#{mklroot}/lib"
+    ["LDFLAGS", "DYLD_LIBRARY_PATH"].each do |f|
+      ENV.append f, "#{mklroot}/lib"
+    end
 
     ["FC", "F77"].each do |f|
       ENV[f] = "/opt/intel/bin/ifort"
     end
 
     ["FFLAGS", "FCFLAGS"].each do |f|
-      ENV[f] = "-xHost -O3 -DNDEBUG -w"
+      ENV.append f, "-xHost"
     end
 
     system "./configure", *args
