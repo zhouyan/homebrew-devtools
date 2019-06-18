@@ -33,7 +33,7 @@ class RMkl < Formula
       "--enable-R-shlib",
       "SED=/usr/bin/sed", # don't remember Homebrew's sed shim
       "--disable-java",
-      "--with-blas=-lmkl_rt -lpthread",
+      "--with-blas=-lmkl_rt",
     ]
 
     # Help CRAN packages find gettext and readline
