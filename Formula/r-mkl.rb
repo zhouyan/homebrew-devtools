@@ -51,7 +51,7 @@ class RMkl < Formula
     end
 
     ["FFLAGS", "FCFLAGS"].each do |f|
-      ENV.append f, "-xHost"
+      ENV.append f, "-xHost -g -O2"
     end
 
     system "./configure", *args
