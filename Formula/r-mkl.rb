@@ -5,7 +5,6 @@ class RMkl < Formula
   sha256 "36fcac3e452666158e62459c6fc810adc247c7109ed71c5b6c3ad5fc2bf57509"
 
   depends_on "pkg-config" => :build
-  depends_on "gcc"
   depends_on "gettext"
   depends_on "jpeg"
   depends_on "libpng"
@@ -42,6 +41,21 @@ class RMkl < Formula
       ENV.append "LDFLAGS", "-L#{Formula[f].opt_lib}"
     end
 
+    # Intel specfic
+
+    mklroot = ENV["MKL_ROOT"] || "/opt/intel/mkl"
+
+    ENV.append "DYLD_LIBRARY_PATH", "#{mklroot}/lib"
+    ENV.append "LDFLAGS", "-L#{mklroot}/lib"
+
+    ["FC", "F77"].each do |f|
+      ENV[f] = "/opt/intel/bin/ifort"
+    end
+
+    ["FFLAGS", "FCFLAGS"].each do |f|
+      ENV[f] = "-xHost -O3 -DNDEBUG -w"
+    end
+
     system "./configure", *args
     system "make"
     ENV.deparallelize do
@@ -59,10 +73,6 @@ class RMkl < Formula
 
     include.install_symlink Dir[r_home/"include/*"]
     lib.install_symlink Dir[r_home/"lib/*"]
-
-    # avoid triggering mandatory rebuilds of r when gcc is upgraded
-    inreplace lib/"R/etc/Makeconf", Formula["gcc"].prefix.realpath,
-                                    Formula["gcc"].opt_prefix
   end
 
   def post_install
