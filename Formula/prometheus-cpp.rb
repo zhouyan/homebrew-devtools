@@ -14,7 +14,8 @@ class PrometheusCpp < Formula
   def install
     (buildpath/"3rdparty/civetweb").install resource("civetweb")
     args = std_cmake_args
-    args << "." << "-DENABLE_TESTING=OFF"
+    args << "."
+    args << "-DENABLE_TESTING=OFF"
     system "cmake", *args
     system "make", "install"
   end

@@ -9,7 +9,8 @@ class Quickfix < Formula
 
   def install
     args = std_cmake_args
-    args << "." << "-DHAVE_SSL=ON"
+    args << "."
+    args << "-DHAVE_SSL=ON"
     system "cmake", *args
     system "make", "install"
   end

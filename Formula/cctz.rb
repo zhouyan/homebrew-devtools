@@ -8,7 +8,9 @@ class Cctz < Formula
 
   def install
     args = std_cmake_args
-    args << "." << "-DBUILD_EXAMPLES=OFF" << "-DBUILD_TESTING=OFF"
+    args << "."
+    args << "-DBUILD_EXAMPLES=OFF"
+    args << "-DBUILD_TESTING=OFF"
     system "cmake", *args
     system "make"
     prefix.install "include"
