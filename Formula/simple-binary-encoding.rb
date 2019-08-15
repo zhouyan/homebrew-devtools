@@ -8,6 +8,7 @@ class SimpleBinaryEncoding < Formula
 
   def install
     system "./gradlew", "build", "-x", "test"
+
     mkdir "build" do
       args = std_cmake_args
       args << ".."
@@ -15,8 +16,15 @@ class SimpleBinaryEncoding < Formula
       system "make", "all"
       lib.install Dir["lib/*"]
     end
-    lib.install Dir["sbe-all/libs/*"]
+
     include.install "sbe-tool/src/main/cpp/otf"
     include.install "sbe-tool/src/main/cpp/sbe"
+
+    lib.install Dir["sbe-all/build/libs/*"]
+    lib.install_symlink({
+      lib/"sbe-all-#{version}.jar" => "sbe-all.jar",
+      lib/"sbe-all-#{version}-javadoc.jar" => "sbe-all-javadoc.jar",
+      lib/"sbe-all-#{version}-sources.jar" => "sbe-all-sources.jar",
+    })
   end
 end

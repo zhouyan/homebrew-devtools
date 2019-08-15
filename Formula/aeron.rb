@@ -9,6 +9,7 @@ class Aeron < Formula
 
   def install
     system "./gradlew", "build", "-x", "test"
+
     mkdir "build" do
       args = std_cmake_args
       args << ".."
@@ -19,6 +20,12 @@ class Aeron < Formula
       system "cmake", *args
       system "make", "install"
     end
+
     lib.install Dir["aeron-all/build/libs/*"]
+    lib.install_symlink({
+      lib/"aeron-all-#{version}.jar" => "aeron-all.jar",
+      lib/"aeron-all-#{version}-javadoc.jar" => "aeron-all-javadoc.jar",
+      lib/"aeron-all-#{version}-sources.jar" => "aeron-all-sources.jar",
+    })
   end
 end
