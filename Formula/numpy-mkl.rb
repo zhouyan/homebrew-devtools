@@ -3,7 +3,6 @@ class NumpyMkl < Formula
   homepage "https://www.numpy.org/"
   url "https://github.com/numpy/numpy/releases/download/v1.17.0/numpy-1.17.0.tar.gz"
   sha256 "47b7b6145e7ba5918ce26be25999b6d4b35cf9fbfdf46b7da50090ffdb020445"
-  head "https://github.com/numpy/numpy.git"
 
   depends_on "gcc" => :build # for gfortran
   depends_on "python"
