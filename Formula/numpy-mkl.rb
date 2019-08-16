@@ -4,7 +4,6 @@ class NumpyMkl < Formula
   url "https://github.com/numpy/numpy/releases/download/v1.17.0/numpy-1.17.0.tar.gz"
   sha256 "47b7b6145e7ba5918ce26be25999b6d4b35cf9fbfdf46b7da50090ffdb020445"
 
-  depends_on "gcc" => :build # for gfortran
   depends_on "python"
 
   def install
@@ -24,6 +23,14 @@ class NumpyMkl < Formula
     dest_path.mkpath
 
     ENV.prepend_create_path "PYTHONPATH", buildpath/"tools/lib/python#{version}/site-packages"
+
+    ["FC", "F77"].each do |f|
+      ENV[f] = "/opt/intel/bin/ifort"
+    end
+
+    ["FFLAGS", "FCFLAGS"].each do |f|
+      ENV.append f, "-xHost -g -O2"
+    end
 
     system python, "setup.py",
       "config",
