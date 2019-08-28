@@ -1,8 +1,8 @@
 class NumpyMkl < Formula
   desc "Package for scientific computing with Python"
   homepage "https://www.numpy.org/"
-  url "https://github.com/numpy/numpy/releases/download/v1.17.0/numpy-1.17.0.tar.gz"
-  sha256 "47b7b6145e7ba5918ce26be25999b6d4b35cf9fbfdf46b7da50090ffdb020445"
+  url "https://github.com/numpy/numpy/releases/download/v1.17.1/numpy-1.17.1.tar.gz"
+  sha256 "24d479ebc92f2d1c739622568f0e4d1382c6bf9778505146a370c8e2f5749839"
 
   depends_on "python"
 
