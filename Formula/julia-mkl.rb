@@ -1,18 +1,18 @@
 class JuliaMkl < Formula
   desc "The Julia Programming Language"
   homepage "https://julialang.org"
-  url "https://github.com/JuliaLang/julia/releases/download/v1.1.1/julia-1.1.1-full.tar.gz"
-  sha256 "3c5395dd3419ebb82d57bcc49dc729df3b225b9094e74376f8c649ee35ed79c2"
+  url "https://github.com/JuliaLang/julia/releases/download/v1.2.0/julia-1.2.0-full.tar.gz"
+  sha256 "2419b268fc5c3666dd9aeb554815fe7cf9e0e7265bc9b94a43957c31a68d9184"
 
   depends_on "cmake" => :build
-  depends_on "arpack"
   depends_on "curl"
+  depends_on "gcc"
   depends_on "gmp"
   depends_on "libgit2"
   depends_on "libssh2"
   depends_on "mbedtls"
+  depends_on "mpfr"
   depends_on "pcre2"
-  depends_on "suite-sparse"
 
   def install
     File.open("Make.user", "w") do |f|
@@ -20,7 +20,6 @@ class JuliaMkl < Formula
       f << "USE_BLAS64=0\n"
       f << "USE_INTEL_MKL=1\n"
       f << "USE_INTEL_MKL_FFT=1\n"
-      f << "USE_SYSTEM_ARPACK=1\n"
       f << "USE_SYSTEM_CURL=1\n"
       f << "USE_SYSTEM_GMP=1\n"
       f << "USE_SYSTEM_LIBGIT2=1\n"
@@ -30,7 +29,6 @@ class JuliaMkl < Formula
       f << "USE_SYSTEM_MBEDTLS=1\n"
       f << "USE_SYSTEM_MPFR=1\n"
       f << "USE_SYSTEM_PCRE=1\n"
-      f << "USE_SYSTEM_SUITESPARSE=1\n"
     end
 
     ENV.append "LDFLAGS", "-L/opt/intel/mkl/lib"

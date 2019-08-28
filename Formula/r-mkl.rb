@@ -1,8 +1,8 @@
 class RMkl < Formula
   desc "Software environment for statistical computing"
   homepage "https://www.r-project.org/"
-  url "https://cran.r-project.org/src/base/R-3/R-3.6.0.tar.gz"
-  sha256 "36fcac3e452666158e62459c6fc810adc247c7109ed71c5b6c3ad5fc2bf57509"
+  url "https://cran.r-project.org/src/base/R-3/R-3.6.1.tar.gz"
+  sha256 "5baa9ebd3e71acecdcc3da31d9042fb174d55a42829f8315f2457080978b1389"
 
   depends_on "pkg-config" => :build
   depends_on "gettext"
