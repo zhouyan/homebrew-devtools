@@ -5,6 +5,7 @@ class JuliaMkl < Formula
   sha256 "2419b268fc5c3666dd9aeb554815fe7cf9e0e7265bc9b94a43957c31a68d9184"
 
   depends_on "cmake" => :build
+  depends_on "arpack"
   depends_on "curl"
   depends_on "gcc"
   depends_on "gmp"
@@ -13,6 +14,7 @@ class JuliaMkl < Formula
   depends_on "mbedtls"
   depends_on "mpfr"
   depends_on "pcre2"
+  depends_on "suite-sparse"
 
   def install
     File.open("Make.user", "w") do |f|
